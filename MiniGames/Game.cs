@@ -40,8 +40,8 @@ namespace MiniGames
             scenes[(int)SceneType.Opening] = new OpeningScene();
             scenes[(int)SceneType.GameSelection] = new GameSelectionScene();
             scenes[(int)SceneType.Omok] = new OmokScene();
-            /*scenes[(int)SceneType.Othello] = new OthelloScene();
-            scenes[(int)SceneType.Blackjack] = new BlackjackScene();
+            scenes[(int)SceneType.Othello] = new OthelloScene();
+            /*scenes[(int)SceneType.Blackjack] = new BlackjackScene();
             scenes[(int)SceneType.Result] = new ResultScene();*/
 
             currentScene = scenes[(int)SceneType.Opening];
