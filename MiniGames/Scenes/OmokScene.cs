@@ -31,7 +31,7 @@ namespace MiniGames.Scenes
 
             public override void Unload()
             {
-                
+
             }
 
             public override void Render()
@@ -81,7 +81,14 @@ namespace MiniGames.Scenes
                             int currentStone = turn % 2 + 1;
                             board.Set(curY, curX, currentStone);
 
-                            if (Check(currentStone))
+                            if (currentStone == 1 && IsOverline(curY, curX, currentStone))
+                            {
+                                board.Set(curY, curX, 0);
+                                Render();
+                                Console.WriteLine("금수! 6목 이상은 허용되지 않습니다.");
+                                Console.ReadKey();
+                            }
+                            else if (Check(currentStone))
                             {
                                 Render();
                                 Console.Clear();
@@ -119,7 +126,7 @@ namespace MiniGames.Scenes
                 }
             }
 
-            public override void Update(Game game) 
+            public override void Update(Game game)
             {
 
             }
@@ -179,7 +186,38 @@ namespace MiniGames.Scenes
                 }
                 return isFiveInRow;
             }
+
+            private bool IsOverline(int y, int x, int stone)
+            {
+                return CheckDirectionForOverline(y, x, stone, 1, 0) ||
+                       CheckDirectionForOverline(y, x, stone, 0, 1) ||
+                       CheckDirectionForOverline(y, x, stone, 1, 1) ||
+                       CheckDirectionForOverline(y, x, stone, 1, -1);
+            }
+
+            private bool CheckDirectionForOverline(int startY, int startX, int stone, int deltaY, int deltaX)
+            {
+                int count = 1;
+                count += CountStones(startY, startX, stone, deltaY, deltaX);
+                count += CountStones(startY, startX, stone, -deltaY, -deltaX);
+                return count > 5;
+            }
+
+            private int CountStones(int startY, int startX, int stone, int deltaY, int deltaX)
+            {
+                int count = 0;
+                int y = startY + deltaY;
+                int x = startX + deltaX;
+
+                while (y >= 0 && x >= 0 && y < board.Size(0) && x < board.Size(1) && board.Get(y, x) == stone)
+                {
+                    count++;
+                    y += deltaY;
+                    x += deltaX;
+                }
+
+                return count;
+            }
         }
     }
-
 }
