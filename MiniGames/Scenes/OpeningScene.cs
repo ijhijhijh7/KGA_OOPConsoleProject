@@ -20,6 +20,7 @@ namespace MiniGames.Scenes
 
         public override void Render()
         {
+            Console.CursorVisible = false;
             Console.WriteLine("미니게임 모음집에 오신걸 환영합니다!");
             Console.WriteLine("시작을 원하시면 엔터를 누르세요...");
         }

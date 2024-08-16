@@ -31,12 +31,14 @@ namespace MiniGames.Scenes
 
             public override void Unload()
             {
-
+                
             }
 
             public override void Render()
             {
                 Console.Clear();
+                Console.CursorVisible = false;
+
                 Console.WriteLine("    < 오목 >");
                 Console.Write(turn % 2 == 0 ? "흑돌 차례" : "백돌 차례");
                 Console.WriteLine($"\t{turn + 1}수");
@@ -78,12 +80,13 @@ namespace MiniGames.Scenes
                         {
                             int currentStone = turn % 2 + 1;
                             board.Set(curY, curX, currentStone);
-                                        
+
                             if (Check(currentStone))
                             {
                                 Render();
-                                Console.WriteLine(currentStone == 1 ? "흑돌 승" : "백돌 승");
-                                Console.WriteLine("아무 키나 누르면 선택 씬으로 돌아갑니다.");
+                                Console.Clear();
+                                Console.WriteLine(currentStone == 1 ? "흑돌 승리!" : "백돌 승리!");
+                                Console.WriteLine("아무 키나 눌러 게임선택창으로 돌아가기");
                                 Console.ReadKey();
                                 game.ChangeScene(SceneType.GameSelection);
                             }
@@ -116,7 +119,10 @@ namespace MiniGames.Scenes
                 }
             }
 
-            public override void Update(Game game) { }
+            public override void Update(Game game) 
+            {
+
+            }
 
             private bool Check(int stone)
             {

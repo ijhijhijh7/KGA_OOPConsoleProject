@@ -20,7 +20,8 @@ namespace MiniGames.Scenes
 
         public override void Render()
         {
-            Console.WriteLine("Select a game to play:");
+            Console.CursorVisible = false;
+            Console.WriteLine("플레이를 원하는 게임을 선택하세요:");
             Console.WriteLine("1. Omok");
             Console.WriteLine("2. Othello");
             Console.WriteLine("3. Blackjack");
@@ -38,7 +39,8 @@ namespace MiniGames.Scenes
                     game.ChangeScene(SceneType.Othello);
                     break;
                 case '3':
-                    game.ChangeScene(SceneType.Blackjack);
+                    Console.WriteLine(" 미구현 상태입니다.");
+                    Thread.Sleep(1000);
                     break;
                 default:
                     Console.WriteLine("\nInvalid selection. Please try again.");

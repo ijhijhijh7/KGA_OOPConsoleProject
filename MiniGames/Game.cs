@@ -73,7 +73,7 @@ namespace MiniGames
         {
             currentScene.Unload();
             currentScene = scenes[(int)newScene];
-            currentScene.Load();
+            currentScene.Load(); 
         }
     }
 }
